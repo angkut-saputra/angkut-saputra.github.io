@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elias Vance | Economist</title>
+    
+    <!-- Fonts: EB Garamond for headings (academic feel), Inter for body (clarity) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for functional styling without custom CSS blobs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['EB Garamond', 'serif'],
+                    },
+                    colors: {
+                        // Using very subtle academic slate/gray tones instead of stark blacks
+                        academic: {
+                            900: '#1a1a1a', // Main headings
+                            800: '#2d2d2d', // Body text
+                            600: '#525252', // Metadata, secondary text
+                            200: '#e5e5e5', // Very subtle borders
+                        }
+                    },
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                color: '#2d2d2d',
+                                a: {
+                                    color: '#1a1a1a',
+                                    textDecoration: 'underline',
+                                    textUnderlineOffset: '2px',
+                                    textDecorationThickness: '1px',
+                                    '&:hover': {
+                                        color: '#525252',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Essential minimal styling that Tailwind utilities don't cover perfectly for this specific vibe */
+        body {
+            background-color: #ffffff;
+            color: #2d2d2d;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .nav-link {
+            transition: color 0.15s ease-in-out;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #1a1a1a;
+        }
+        
+        .nav-link.active {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #1a1a1a;
+        }
+
+        /* SPA Section handling */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        
+        .page-section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(2px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Academic links style (brackets) */
+        .acad-link {
+            text-decoration: none;
+            color: #525252;
+            transition: color 0.1s ease;
+        }
+        .acad-link:hover {
+            color: #1a1a1a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="font-sans font-light leading-relaxed text-academic-800">
+
+    <div class="max-w-3xl mx-auto px-6 py-12 md:py-20 lg:py-24">
+        
+        <header class="mb-16 md:mb-24">
+            <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm md:text-base text-academic-600">
+                <a href="#home" class="nav-link active" onclick="navigate('home')">Home</a>
+                <a href="#research" class="nav-link" onclick="navigate('research')">Research</a>
+                <a href="#teaching" class="nav-link" onclick="navigate('teaching')">Teaching</a>
+                <a href="#notes" class="nav-link" onclick="navigate('notes')">Notes</a>
+                <a href="#about" class="nav-link" onclick="navigate('about')">About</a>
+                <a href="#cv" class="nav-link" onclick="navigate('cv')">CV</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="page-section active-section">
+                <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
+                    <header class="order-2 md:order-1 max-w-2xl">
+                        <h1 class="font-serif text-3xl md:text-4xl text-academic-900 mb-2">Elias Vance</h1>
+                        <p class="font-serif text-lg md:text-xl text-academic-800 mb-1">Economist & Economics Researcher</p>
+                        <p class="text-sm text-academic-600 uppercase tracking-wide mt-3">Macroeconomics · Microeconomics · Game Theory</p>
+                    </header>
+                    
+                    <div class="order-1 md:order-2 w-32 md:w-40 shrink-0">
+                        <!-- Ganti URL src di bawah dengan nama file foto Anda, misalnya "pasfoto.jpg" -->
+                        <img src="https://placehold.co/400x400/f5f5f5/525252?text=Photo" alt="Elias Vance" class="w-full h-auto rounded border border-academic-200 shadow-sm" style="aspect-ratio: 1/1; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="prose prose-neutral max-w-none">
+                    <p class="text-base md:text-lg text-academic-800 leading-relaxed mb-10">
+                        I study economic theory and quantitative economics, with interests spanning macroeconomics, microeconomics, and game theory. My current research focuses on dynamic stochastic general equilibrium models and strategic behavior in asymmetric information environments.
+                    </p>
+
+                    <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-2 inline-block">Research Interests</h2>
+                    <ul class="list-none p-0 m-0 space-y-1 text-academic-800">
+                        <li>Macroeconomics</li>
+                        <li>Microeconomics</li>
+                        <li>Game Theory</li>
+                        <li>Monetary Economics</li>
+                        <li>Labor Economics</li>
+                        <li>Applied Econometrics</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="research" class="page-section">
+                <h1 class="font-serif text-3xl text-academic-900 mb-10">Research</h1>
+
+                <div class="mb-12">
+                    <h2 class="font-serif text-2xl text-academic-900 mb-6 border-b border-academic-200 pb-2">Working Papers</h2>
+                    
+                    <div class="space-y-8">
+                        <!-- Paper 1 -->
+                        <article>
+                            <h3 class="font-serif text-xl text-academic-900 mb-1">Information Friction and Optimal Monetary Policy in a Non-Linear Setting</h3>
+                            <div class="text-sm text-academic-600 mb-3">
+                                <span>2026</span> &nbsp;|&nbsp; <span>Working Paper</span> &nbsp;|&nbsp; <span>with Sarah Jenkins</span>
+                            </div>
+                            <p class="text-academic-800 text-sm md:text-base leading-relaxed mb-3">
+                                We develop a heterogeneous agent New Keynesian model with rational inattention. We demonstrate that information frictions interact with non-linearities in the Phillips curve to alter the optimal trajectory of interest rates during inflationary episodes.
+                            </p>
+                            <div class="text-sm font-medium">
+                                <a href="#" class="acad-link">[PDF]</a>
+                                <a href="#" class="acad-link ml-2">[Code]</a>
+                            </div>
+                        </article>
+
+                        <hr class="border-academic-200">
+
+                        <!-- Paper 2 -->
+                        <article>
+                            <h3 class="font-serif text-xl text-academic-900 mb-1">Repeated Games with Endogenous Network Formation</h3>
+                            <div class="text-sm text-academic-600 mb-3">
+                                <span>2025</span> &nbsp;|&nbsp; <span>Revise & Resubmit, <em>Journal of Economic Theory</em></span>
+                            </div>
+                            <p class="text-academic-800 text-sm md:text-base leading-relaxed mb-3">
+                                This paper examines a setting where agents play a repeated game while simultaneously forming the network over which they interact. We characterize the set of strongly perfect equilibria and show how network density affects cooperation.
+                            </p>
+                            <div class="text-sm font-medium">
+                                <a href="#" class="acad-link">[PDF]</a>
+                                <a href="#" class="acad-link ml-2">[Appendix]</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-2xl text-academic-900 mb-6 border-b border-academic-200 pb-2">Publications</h2>
+                    
+                    <div class="space-y-8">
+                        <article>
+                            <h3 class="font-serif text-xl text-academic-900 mb-1">Wage Rigidity and Labor Market Dynamics</h3>
+                            <div class="text-sm text-academic-600 mb-3">
+                                <span>2023</span> &nbsp;|&nbsp; <span><em>American Economic Review</em>, 113(4): 1021-55</span>
+                            </div>
+                            <p class="text-academic-800 text-sm md:text-base leading-relaxed mb-3">
+                                An empirical analysis of downward nominal wage rigidity using administrative panel data. We provide new estimates of the friction cost and its macroeconomic implications during recessions.
+                            </p>
+                            <div class="text-sm font-medium">
+                                <a href="#" class="acad-link">[Journal Link]</a>
+                                <a href="#" class="acad-link ml-2">[Pre-print PDF]</a>
+                                <a href="#" class="acad-link ml-2">[Data]</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="teaching" class="page-section">
+                <h1 class="font-serif text-3xl text-academic-900 mb-10">Teaching</h1>
+                
+                <p class="mb-8 text-academic-800">Materials and syllabi for courses I have taught or served as a teaching assistant for.</p>
+
+                <div class="space-y-10">
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Graduate Level</h2>
+                        <ul class="space-y-4">
+                            <li class="flex flex-col md:flex-row md:items-baseline md:justify-between">
+                                <div>
+                                    <span class="font-medium text-academic-900">Advanced Macroeconomic Theory I</span>
+                                    <span class="text-sm text-academic-600 block md:inline md:ml-2">Teaching Assistant</span>
+                                </div>
+                                <div class="text-sm text-academic-600 mt-1 md:mt-0">Fall 2025, Fall 2024</div>
+                            </li>
+                            <li class="flex flex-col md:flex-row md:items-baseline md:justify-between">
+                                <div>
+                                    <span class="font-medium text-academic-900">Game Theory and Applications</span>
+                                    <span class="text-sm text-academic-600 block md:inline md:ml-2">Instructor</span>
+                                </div>
+                                <div class="text-sm text-academic-600 mt-1 md:mt-0">Spring 2024</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Undergraduate Level</h2>
+                        <ul class="space-y-4">
+                            <li class="flex flex-col md:flex-row md:items-baseline md:justify-between">
+                                <div>
+                                    <span class="font-medium text-academic-900">Intermediate Microeconomics</span>
+                                    <span class="text-sm text-academic-600 block md:inline md:ml-2">Instructor</span>
+                                    <div class="text-sm mt-1">
+                                        <a href="#" class="acad-link">[Syllabus]</a>
+                                        <a href="#" class="acad-link ml-2">[Problem Sets]</a>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-academic-600 mt-1 md:mt-0">Spring 2025</div>
+                            </li>
+                            <li class="flex flex-col md:flex-row md:items-baseline md:justify-between">
+                                <div>
+                                    <span class="font-medium text-academic-900">Introduction to Econometrics</span>
+                                    <span class="text-sm text-academic-600 block md:inline md:ml-2">Teaching Assistant</span>
+                                </div>
+                                <div class="text-sm text-academic-600 mt-1 md:mt-0">Fall 2023</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="notes" class="page-section">
+                <h1 class="font-serif text-3xl text-academic-900 mb-10">Notes</h1>
+                
+                <p class="mb-8 text-academic-800">A collection of personal reference notes, derivations, and guides. These are continuously updated and may contain errors.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                    <div>
+                        <h2 class="font-serif text-lg text-academic-900 mb-3 border-b border-academic-200 pb-1">Macroeconomic Theory</h2>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Solving DSGE Models with Dynare</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Notes on Search and Matching Frictions</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Continuous Time Macro Models</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-lg text-academic-900 mb-3 border-b border-academic-200 pb-1">Microeconomic Theory & Game Theory</h2>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Mechanism Design Primer</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Notes on Bayesian Games</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Information Economics Reference</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-lg text-academic-900 mb-3 border-b border-academic-200 pb-1">Econometrics & Statistics</h2>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Time Series Analysis Cheatsheet</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Asymptotic Theory Definitions</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-lg text-academic-900 mb-3 border-b border-academic-200 pb-1">Computation</h2>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Python for Economists</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">Numerical Methods in Julia</a></li>
+                            <li><a href="#" class="text-academic-800 hover:text-academic-900 hover:underline underline-offset-2">LaTeX Formatting Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="page-section">
+                <h1 class="font-serif text-3xl text-academic-900 mb-10">About</h1>
+
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Biography</h2>
+                        <p class="text-academic-800 leading-relaxed mb-4">
+                            I am an economics researcher specializing in economic theory and quantitative macroeconomics. My work primarily involves developing theoretical models to understand the implications of information frictions, and applying these models to questions in monetary policy and labor economics.
+                        </p>
+                        <p class="text-academic-800 leading-relaxed">
+                            Currently, I am working on projects relating to bounded rationality in dynamic stochastic environments and endogenous network formation in strategic interactions.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Education</h2>
+                        <ul class="space-y-2 text-academic-800">
+                            <li class="flex flex-col md:flex-row md:justify-between">
+                                <span>Ph.D. in Economics, University Name</span>
+                                <span class="text-academic-600 text-sm md:text-base">Expected 2027</span>
+                            </li>
+                            <li class="flex flex-col md:flex-row md:justify-between">
+                                <span>M.A. in Economics, University Name</span>
+                                <span class="text-academic-600 text-sm md:text-base">2023</span>
+                            </li>
+                            <li class="flex flex-col md:flex-row md:justify-between">
+                                <span>B.S. in Mathematics and Economics, University Name</span>
+                                <span class="text-academic-600 text-sm md:text-base">2021</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Technical Skills</h2>
+                        <div class="text-academic-800">
+                            <span class="font-medium">Languages & Software:</span> Python, R, MATLAB, Julia, Stata, EViews
+                            <br>
+                            <span class="font-medium mt-2 block">Tools:</span> LaTeX, Git, Bash
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cv" class="page-section">
+                <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-10">
+                    <h1 class="font-serif text-3xl text-academic-900 mb-4 md:mb-0">Curriculum Vitae</h1>
+                    <a href="#" class="inline-block border border-academic-900 text-academic-900 px-4 py-1 text-sm hover:bg-academic-900 hover:text-white transition-colors duration-200">
+                        Download CV (PDF)
+                    </a>
+                </div>
+
+                <div class="space-y-10 text-academic-800">
+                    <!-- CV sections follow the exact same structure as the rest of the site for consistency -->
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Education</h2>
+                        <ul class="space-y-3">
+                            <li class="flex flex-col">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">Ph.D. in Economics</span>
+                                    <span class="text-academic-600 text-sm">Expected May 2027</span>
+                                </div>
+                                <span class="text-sm">University Name</span>
+                                <span class="text-sm text-academic-600 mt-1">Committee: Prof. A, Prof. B, Prof. C</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">B.S. Mathematics & Economics</span>
+                                    <span class="text-academic-600 text-sm">May 2021</span>
+                                </div>
+                                <span class="text-sm">University Name</span>
+                                <span class="text-sm text-academic-600 mt-1">Summa Cum Laude</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Research Experience</h2>
+                        <ul class="space-y-3">
+                            <li class="flex flex-col">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">Research Assistant to Prof. Jane Doe</span>
+                                    <span class="text-academic-600 text-sm">2023 - Present</span>
+                                </div>
+                                <span class="text-sm">University Name</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">Pre-Doctoral Fellow</span>
+                                    <span class="text-academic-600 text-sm">2021 - 2022</span>
+                                </div>
+                                <span class="text-sm">National Bureau of Economic Research (NBER)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-serif text-xl text-academic-900 mb-4 border-b border-academic-200 pb-1">Honors & Awards</h2>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between">
+                                <span>Graduate Research Fellowship</span>
+                                <span class="text-academic-600">2024</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Departmental Teaching Award</span>
+                                <span class="text-academic-600">2023</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-24 pt-8 border-t border-academic-200 text-sm text-academic-600 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; <span id="year"></span> Elias Vance.</p>
+            <div class="mt-2 md:mt-0 space-x-4">
+                <a href="mailto:contact@example.edu" class="hover:text-academic-900 transition-colors">contact@example.edu</a>
+                <span>|</span>
+                <a href="#" class="hover:text-academic-900 transition-colors">Google Scholar</a>
+                <span>|</span>
+                <a href="#" class="hover:text-academic-900 transition-colors">GitHub</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Simple Single Page Application logic for navigation
+        function navigate(sectionId) {
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + sectionId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Update visible section
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active-section');
+            });
+            document.getElementById(sectionId).classList.add('active-section');
+            
+            // Scroll to top when changing sections, feels more natural
+            window.scrollTo(0, 0);
+        }
+
+        // Handle direct links on load (e.g., website.com/#research)
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                navigate(hash);
+            }
+        });
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                navigate(hash);
+            } else if (!hash) {
+                navigate('home');
+            }
+        });
+    </script>
+</body>
+</html>
